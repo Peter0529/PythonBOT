@@ -1,0 +1,115 @@
+{
+  "id": "5c141e3d-9bad-4b3a-a47c-ec177586724d",
+  "version": "2.0",
+  "name": "login",
+  "url": "https://audiomack.com",
+  "tests": [{
+    "id": "761d2d5f-587b-4399-81ef-44e7d14e372f",
+    "name": "login",
+    "commands": [{
+      "id": "205dbf13-6c52-40aa-940b-2feb537b2d6b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f1a16f56-cb4a-4e4c-8565-58e14ae8510e",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1038x742",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "56850ee4-fae8-47a8-9549-af6759b5289f",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//a[contains(text(),'Sign in')]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "485bc98c-fd2b-4375-9ca5-e7dd227691b3",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@name='email']",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.column > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div[@id='am-modal']/div[2]/div/div/div[2]/div/form/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": "robert.campbell4681@cartone.life"
+    }, {
+      "id": "bf4a95fd-4eda-4158-be61-0d5f296afeb2",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=(//button[@type='submit'])[2]",
+      "targets": [
+        ["css=.auth__button--submit", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='am-modal']/div[2]/div/div/div[2]/div/form/button", "xpath:idRelative"],
+        ["xpath=//div/div[2]/div/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc3b91d9-e7e7-410a-be0a-0b7431f39913",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//input[@id='password']",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='am-modal']/div[2]/div/div/div[2]/div/div/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "80845bbe-4093-43bc-8c44-d1c69b93029a",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//input[@id='password']",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[@id='am-modal']/div[2]/div/div/div[2]/div/div/form/div[2]/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "wibthBB=(07"
+    }, {
+      "id": "3b2234b2-0b52-406d-af08-c48b5a176738",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=(//button[@type='submit'])[2]",
+      "targets": [
+        ["css=.button--padded", "css:finder"],
+        ["xpath=(//button[@type='submit'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='am-modal']/div[2]/div/div/div[2]/div/div/form/div[4]/button", "xpath:idRelative"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign in')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "693a938b-652a-455d-aa67-4c0676a87ed1",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "xpath=//button/div/span",
+      "targets": [],
+      "value": "30000"
+    }]
+  }],
+  "suites": [{
+    "id": "32a635dc-4404-412c-bfe7-4706bcebc87a",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["761d2d5f-587b-4399-81ef-44e7d14e372f"]
+  }],
+  "urls": ["https://audiomack.com/"],
+  "plugins": []
+}
