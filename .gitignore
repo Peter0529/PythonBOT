@@ -1,5 +1,6 @@
 /settings/GoogleChromePortable/
 /bin/
 /target/
-__pycache__/
+__pycache__
+
 *.pyc
