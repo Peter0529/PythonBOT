@@ -10,38 +10,46 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
+from mychrome import MyChrome
+from settings.main_settings import *
+from api import XPATHs
+
 class TestLogin():
-  def setup_method(self, method):
-    self.driver = webdriver.Chrome(executable_path=r'pytest/chromedriver.exe')
-    self.vars = {}
+    # Before test
+    def setup_method(self, method):
+        self.driver     = MyChrome(proxy='192.126.209.165:8800',agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36',timeout=30)
+        self.username   = 'andrew.giuliano0187@cartone.life'
+        self.password   = 'qkbpuTA=#33'
+
+        # {'email_id': 4035, 'proxy': '192.126.209.165:8800', 'password': 'qkbpuTA=#33', 
+        # 'agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36', 
+        # 'agent_id': 615, 'connection': 'HTTP', 'proxy_id': 8123, 'type': 'PRIVATE', 'email': 'andrew.giuliano0187@cartone.life'}
+
+    # After Test
+    def teardown_method(self, method):
+        self.driver.quit()
   
-  def teardown_method(self, method):
-    self.driver.quit()
-  
-  def test_login(self):
-    # Test name: login
-    # Step # | name | target | value
-    # 1 | open | / | 
-    self.driver.get("https://audiomack.com/")
-    # 2 | setWindowSize | 1038x742 | 
-    self.driver.set_window_size(1038, 742)
-    # 3 | waitForElementPresent | xpath=//a[contains(text(),'Sign in')] | 30000
-    WebDriverWait(self.driver, 30000).until(expected_conditions.presence_of_element_located((By.XPATH, "//a[contains(text(),\'Sign in\')]")))
-    # 4 | click | xpath=//a[contains(text(),'Sign in')] | 
-    self.driver.find_element(By.XPATH, "//a[contains(text(),\'Sign in\')]").click()
-    # 5 | waitForElementPresent | xpath=//input[@name='email'] | 30000
-    WebDriverWait(self.driver, 30000).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@name=\'email\']")))
-    # 6 | type | xpath=//input[@name='email'] | robert.campbell4681@cartone.life
-    self.driver.find_element(By.XPATH, "//input[@name=\'email\']").send_keys("robert.campbell4681@cartone.life")
-    # 7 | click | xpath=(//button[@type='submit'])[2] | 
-    self.driver.find_element(By.XPATH, "(//button[@type=\'submit\'])[2]").click()
-    # 8 | waitForElementPresent | xpath=//input[@id='password'] | 30000
-    WebDriverWait(self.driver, 30000).until(expected_conditions.presence_of_element_located((By.XPATH, "//input[@id=\'password\']")))
-    # 9 | click | xpath=//input[@id='password'] | 
-    self.driver.find_element(By.XPATH, "//input[@id=\'password\']").click()
-    # 10 | type | xpath=//input[@id='password'] | wibthBB=(07
-    self.driver.find_element(By.XPATH, "//input[@id=\'password\']").send_keys("wibthBB=(07")
-    # 11 | click | xpath=(//button[@type='submit'])[2] | 
-    self.driver.find_element(By.XPATH, "(//button[@type=\'submit\'])[2]").click()
-    # 12 | waitForElementPresent | xpath=//button/div/span | 30000
-    WebDriverWait(self.driver, 30000).until(expected_conditions.presence_of_element_located((By.XPATH, "//button/div/span")))
+    # Test Method
+    def test_login(self):
+        # Go to main site page
+        self.driver.navigateToUrl(MAIN_SITE)
+        # check the page loaded successfully
+        assert self.driver.isPageLoadSuccess() == True
+        
+        # Check accept-button
+        self.driver.isAcceptButtonPresent()
+
+        # Check signin-button is displayed and click
+
+        assert self.driver.checkIfElementIsPresent(XPATHs['signin_button']) == True
+
+        # Check username input box is displayed and type username
+        assert self.driver.checkIfElementIsDisplayed(XPATHs['email_input']) == True
+        self.driver.typeTextandEnter(XPATHs['email_input'],self.username)
+
+        # Check password input box is displayed and type password
+        assert self.driver.checkIfElementIsDisplayed(XPATHs['password_input']) == True
+        self.driver.typeTextandEnter(XPATHs['password_input'],self.password)
+
+        # Check account summary view for sign success
+        assert self.driver.checkIfElementIsDisplayed(XPATHs['summary_view_for_check_signed_in']) == True

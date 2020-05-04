@@ -101,7 +101,7 @@ class Ui_MainWindow(object):
         font = QtGui.QFont()
         font.setBold(True)
         font.setWeight(75)
-        self.inputMaxMixed.setFont(font)
+        self.inputMaxMixed.setFont(font) 
         self.inputMaxMixed.setMaximum(999)
         self.inputMaxMixed.setObjectName("inputMaxMixed")
         self.gridLayout.addWidget(self.inputMaxMixed, 1, 10, 1, 1)

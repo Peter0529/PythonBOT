@@ -2,17 +2,29 @@
 import threading
 import time
 import api
-# from actions.login import LogIn
+from settings.main_settings import *
 from mychrome import MyChrome
+
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 class MyThread (threading.Thread):
   
     def __init__(self,settings):
         threading.Thread.__init__(self)
 
+        
         self.is_working = True
         self.is_signed  = False
 
+        # Actions Count in Thread
+        self.played         = 0
+        self.favorited      = 0
+        self.highlighted    = 0
+        self.reuped         = 0
+        self.followed       = 0
+        self.error          = 0
+        
         # Set Bot Thread Settings
 
         # settings = {
@@ -37,9 +49,8 @@ class MyThread (threading.Thread):
 
         self.infos = api.getInfos(settings['PROXY_NOTE'])
 
-
         # Initialize Web Driver with Extensions
-        self.webdriver = MyChrome(self.infos['proxy'],self.infos['agent'])
+        self.webdriver = MyChrome(self.infos['proxy'],self.infos['agent'],settings['TIMEOUT'])
     
     def run(self):
         print
@@ -47,3 +58,11 @@ class MyThread (threading.Thread):
     def stop(self):
         self.webdriver.quit()
     
+    # Login Action
+    def login(self):
+
+        self.webdriver.get(MAIN_SITE)
+        with self.assertRaises(NoSuchElementException):
+            elem = self.webdriver.find_element_by_class_name('error-code')
+        if not elem:
+            print("not found")

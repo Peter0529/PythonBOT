@@ -65,5 +65,10 @@ CRUDAPI_POST_ERROR_LOG              = CRUDAPI_BASE_URL + "create_error"
 CRUDAPI_POST_ACTION_COUNT           = CRUDAPI_BASE_URL + "add_action_count/"
 
 
+################################ CONNECTION ERROR ##################################################################################
 
-
+PAGE_ERR_STR_LIST                   = [
+                                        "ERR_PROXY_CONNECTION_FAILED",
+                                        "ERR_CONNECTION_RESET",
+                                        "ERR_NO_SUPPORTED_PROXIES",
+                                        ]
